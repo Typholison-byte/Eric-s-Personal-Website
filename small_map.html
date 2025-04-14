@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Eric's Website</title>
+	<!--Mapbox GL JS-->
+	<script src='https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.js'></script>
+	<link href='https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.css' rel='stylesheet'>
+	<!-- mapbox geocoder plugin -->
+	<script
+		src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.min.js"></script>
+	<link rel="stylesheet"
+		href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.css"
+		type="text/css">
+	<!--Bootstrap-->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<!--CSS-->
+	<link rel="stylesheet" href="small_map.css">
+</head>
+
+<body>
+
+	<!--Navigation bar test-->
+	<!-- Bootstrap Navigation Bar -->
+	<nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="#">Eric's Website</a>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<div align="left">
+					<ul class="navbar-nav ms-auto">
+						<li class="nav-item">
+							<a class="nav-link" href="index.html">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="projects.html">Projects</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active" href="small_map.html">Transportation Project</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<br><br>
+
+	<div align='center'>
+
+		<!-- Container for main content - Centre all text inside container and set background to black and text to white -->
+		<div class="container text-center p-3 mb-2 bg-black">
+			<!-- Heading section -->
+			<div class="row">
+
+				<h1> Forms of transportation around Toronto</h1>
+				<h2> Project that is work in progress</h2>
+
+				<!-- Image section - Display gif stored in Data folder in row
+                Use Bootstrap grid system to set image to a width of four columns on medium screen and larger
+                Use mx-auto to centre and img-fluid to adjust sizing-->
+				<div class="row">
+					<div class="col-md-4 mx-auto">
+						<img src="subway.gif" class="img-fluid" alt="subway station">
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+
+	<br><br>
+	<div align=left>
+		<p>This map below shows the different forms of transportation around Toronto. This includes GO-Stations,
+			Suibway Lines and Airports. Many different services are available through transportation around the city.
+		</p>
+		<br>
+
+		<p>Want to check out GO Train/Bus Stations: <a href="https://www.gotransit.com/en">
+				GO Stations</a></p>
+		<p>Want more information on Pearson Airport: : <a href="https://www.torontopearson.com/en">
+				Pearson Airport</a></p>
+		<p>Want more information on Billy Bishop Airport: : <a href="https://www.billybishopairport.com/">
+				Billy Bishop</a></p>
+		<p>Want more information on the Toronto Transit Commission: <a href="https://www.ttc.ca/">
+				TTC Subway Lines and routes</a></p>
+	</div>
+
+	<br><br><br><br><br><br><br><br><br>
+	<!-- Shifting text to the right -->
+	<div align="left" style="margin-left: 20px;">
+		<br>
+		<br>
+		<!-- Link to airports geojson-->
+		<p style="font-size: 28px;">References of GeoJson Files</p>
+		<p><a
+				href="https://raw.githubusercontent.com/Typholison-byte/GGR472-Lab-3/refs/heads/main/Data/airports.geojson">
+				Airports GeoJSON file</a>
+		</p>
+		<!-- Link to GO Train Stations geojson-->
+		<p>
+			<a
+				href="https://raw.githubusercontent.com/Typholison-byte/GGR472-Lab-3/refs/heads/main/Data/GO%20Stations.geojson">
+				GO Train Stations GeoJSON file</a>
+		</p>
+		<!-- Link to Subway Lines geojson-->
+		<p>
+			<a
+				href="https://raw.githubusercontent.com/Typholison-byte/GGR472-Lab-3/refs/heads/main/Data/GGR472_Subway_Lines.geojson">
+				Subway Lines GeoJSOn file</a>
+		</p>
+
+
+	</div>
+
+	<!-- Move the map here -->
+	<div id="my-map" class="map-container">
+		<!-- NAVIGATION ELEMENTS -->
+		<div class="map-search-container">
+			<label for="geocoder">Search for location</label>
+			<div id="geocoder" class="geocoder"></div>
+		</div>
+
+		<!-- LEGEND -->
+		<div id='popn-legend' class='legend'>
+			<div align=center>
+				<h6>Transportation Stops around Toronto</h4>
+					<!-- <div><span></span>GO-Stations</div>
+					<div><span></span>Subway Lines</div>
+					<div><span></span>Airports</div> -->
+			</div>
+		</div>
+
+		<!-- Load the mapbox-gl-geocoder plugin -->
+		<script
+			src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.min.js"></script>
+		<link rel="stylesheet"
+			href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.css"
+			type="text/css">
+
+		<script src="script.js"></script>
+		<!-- Bootstrap JavaScript (For Navbar Toggle) -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

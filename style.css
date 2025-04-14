@@ -1,0 +1,45 @@
+/* Adjust headings styles */
+h1 {
+    color: turquoise;
+}
+
+h2 {
+    color: orange;
+}
+
+/* Styling body text */
+body {
+    background-color: black;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: lightblue;
+    margin: 10px;
+    padding: 0;
+
+}
+
+.navbar {
+    background-color: rgba(0, 128, 0, 0.23) !important;
+}
+
+/* Styling navbar */
+.navbar-brand,
+.nav-link {
+    color: orange;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 10px 15px;
+}
+
+.st_john-img {
+    width: 150%; /* or any fixed width like 300px */
+    border-radius: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    filter: brightness(90%) contrast(110%);
+    transition: transform 0.3s ease;
+  }
+  
+  .st_john-img:hover {
+    transform: scale(1.05);
+  }
