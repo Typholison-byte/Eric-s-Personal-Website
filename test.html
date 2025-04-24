@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chess Tactics</title>
+  <link rel="stylesheet" href="https://unpkg.com/chessboardjs@1.0.0/dist/chessboard.min.css"/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    #board {
+      width: 400px;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Fork: A Powerful Chess Tactic</h1>
+  <p>A fork is a move that attacks two or more pieces at the same time. Knights are especially good at forks.</p>
+
+  <div id="board"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/1.0.0/chess.min.js"></script>
+  <script src="https://unpkg.com/chessboardjs@1.0.0/dist/chessboard.min.js"></script>
+  <script>
+    const board = Chessboard('board', {
+      position: '2r3k1/pp3ppp/2n5/3N4/8/8/PPP2PPP/2KR4 w - - 0 1',
+      draggable: true,
+      dropOffBoard: 'snapback',
+      sparePieces: false
+    });
+  </script>
+</body>
+</html>

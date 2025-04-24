@@ -44,8 +44,7 @@ map.on('load', () => {
     // Add a data source from a GeoJSON file 
     map.addSource('GO-Stations', {
         type: 'geojson',
-        data: 'https://raw.githubusercontent.com/Typholison-byte/GGR472-Lab-3/refs/heads/main/Data/GO%20Stations.geojson' // Your URL to your buildings.geojson file
-        // data: 'file:///Users/lakeerie/Downloads/Eric's%20Website/Data/GO%20Stations.geojson' // Your URL to your buildings.geojson file  
+        data: 'https://raw.githubusercontent.com/Typholison-byte/Eric-s-Personal-Website/refs/heads/main/Data/GO%20Stations.geojson' 
     });
 
     // Add the layer to display the stations
@@ -72,7 +71,7 @@ map.on('load', () => {
     // Add a data source from a GeoJSON file
     map.addSource('GGR472_Subway_Lines', {
         type: 'geojson',
-        data: 'https://raw.githubusercontent.com/Typholison-byte/GGR472-Lab-3/refs/heads/main/Data/GGR472_Subway_Lines.geojson' // Your URL to your buildings.geojson file 
+        data: 'https://raw.githubusercontent.com/Typholison-byte/Eric-s-Personal-Website/refs/heads/main/Data/GGR472_Subway_Lines.geojson'
     });
 
     // Adding layer for subway lines
@@ -100,10 +99,10 @@ map.on('load', () => {
     });
 
     // Toggle layers button
-    document.getElementById('toggle-subway').addEventListener('click', () => {
-        const visibility = map.getLayoutProperty('Subway-Lines-layer', 'visibility');
-        map.setLayoutProperty('Subway-Lines-layer', 'visibility', visibility === 'visible' ? 'none' : 'visible');
-    });
+    // document.getElementById('toggle-subway').addEventListener('click', () => {
+    //     const visibility = map.getLayoutProperty('Subway-Lines-layer', 'visibility');
+    //     map.setLayoutProperty('Subway-Lines-layer', 'visibility', visibility === 'visible' ? 'none' : 'visible');
+    // });
 
 
     // Add a data source from a GeoJSON file - NOT WORKING, SHOULD FIX!
@@ -124,33 +123,99 @@ map.on('load', () => {
     //     }
     // });
 
-    // Pop-ups for Airports
-    // map.on('click', 'Airports-layer', (e) => {
-    //     new mapboxgl.Popup()
-    //         .setLngLat(e.lngLat)
-    //         .setHTML(`<b>Airport:</b> ${e.features[0].properties.name}`)
-    //         .addTo(map);
+    // Airports lines
+    // map.addSource('Airports', {
+    //     type: 'geojson',
+    //     data: 'https://raw.githubusercontent.com/Typholison-byte/Eric-s-Personal-Website/refs/heads/main/Data/airports.geojson'
     // });
 
-    // Attempt #2
+    // map.addLayer({
+    //     id: 'Airports-layer',
+    //     type: 'line',
+    //     source: 'Airports',
+    //     layout: {
+    //         'line-join': 'round',
+    //         'line-cap': 'round'
+    //     },
+    //     paint: {
+    //         'line-color': 'purple',
+    //         'line-width': 3,
+    //         'line-opacity': 0.8
+    //     }
+    // });
+
+    // Pop-ups for Airports
+    map.on('click', 'Airports-layer', (e) => {
+        new mapboxgl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML(`<b>Airport:</b> ${e.features[0].properties.name}`)
+            .addTo(map);
+    });
+
+    // Attempting Polygon fill
+    // map.addSource('Airports', {
+    //     type: 'geojson',
+    //     data: 'https://raw.githubusercontent.com/Typholison-byte/Eric-s-Personal-Website/refs/heads/main/Data/airports.geojson'
+    // });
+
+    // map.addLayer({
+    //     id: 'Airports-layer', // Unique layer ID
+    //     type: 'fill',  // Must be 'fill' for polygons
+    //     source: 'Airports', // Corrected source ID
+    //     paint: {
+    //         'fill-color': 'purple',
+    //         'fill-opacity': 0.5, // Adjusted opacity for visibility
+    //         'fill-outline-color': '#000000' // Black outline for contrast
+    //     }
+    // });
+
+    // Airports of Ontario
     map.addSource('Airports', {
         type: 'geojson',
-        data: 'https://raw.githubusercontent.com/Typholison-byte/GGR472-Lab-3/main/Data/airports.geojson'
+        data: 'https://raw.githubusercontent.com/Typholison-byte/Eric-s-Personal-Website/refs/heads/main/Data/airports.geojson'
+    });
+
+    map.addLayer({
+        id: 'Airports-layer', // Unique layer ID
+        type: 'fill',  // Must be 'fill' for polygons
+        source: 'Airports', // Corrected source ID
+        paint: {
+            'fill-color': 'purple',
+            'fill-opacity': 0.5, // Adjusted opacity for visibility
+            'fill-outline-color': '#000000' // Black outline for contrast
+        }
+    });
+
+
+    // VIA Rail Ontario Stations
+    map.addSource('VIA', {
+        type: 'geojson',
+        data: 'https://raw.githubusercontent.com/Typholison-byte/Eric-s-Personal-Website/refs/heads/main/Data/VIA%20Rail%20Ontario.geojson'
     });
     
     map.addLayer({
-        id: 'Airports-layer',
+        id: 'VIA-layer',
         type: 'circle',
-        source: 'Airports',
+        source: 'VIA',
         paint: {
             'circle-radius': 6,
-            'circle-color': 'purple',
+            'circle-color': 'orange',
             'circle-stroke-width': 1,
             'circle-stroke-color': '#000000'
         }
     });
 
+    // Pop-ups for VIA Rail
+    map.on('click', 'VIA-layer', (e) => {
+        new mapboxgl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML(`<b>VIA Rail Station:</b> ${e.features[0].properties.name}`)
+            .addTo(map)
+    });
+
 });
+
+
 
 /*--------------------------------------------------------------------
 CREATE LEGEND IN JAVASCRIPT
@@ -160,12 +225,14 @@ const legendlabels = [
     'GO Stations',
     'Subway Lines',
     'Airports',
+    'VIA',
 ];
 
 const legendcolours = [
     'green',
     'blue',
     'purple',
+    'orange'
 ];
 
 //Declare legend variable 
@@ -174,7 +241,9 @@ const legend = document.getElementById('popn-legend');
 const layers = [
     { id: 'GO-Stations-layer', name: 'GO Stations', color: 'green' },
     { id: 'Subway-Lines-layer', name: 'Subway Lines', color: 'blue' },
-    { id: 'Airports-layer', name: 'Airports', color: 'purple' }
+    { id: 'Airports-layer', name: 'Airports', color: 'purple' },
+    { id: 'VIA-layer', name: 'VIA', color: 'orange' }
+
 ];
 
 layers.forEach(layer => {
@@ -207,8 +276,9 @@ document.getElementById("boundary").addEventListener('change', (e) => {
     const selectedValue = e.target.value;
 
     map.setLayoutProperty('GO-Stations-layer', 'visibility', selectedValue === 'Ontario' ? 'visible' : 'none');
-    map.setLayoutProperty('Subway-Lines-layer', 'visibility', selectedValue === 'Quebec' ? 'visible' : 'none');
-    map.setLayoutProperty('Airports-layer', 'visibility', selectedValue === 'Yukon' ? 'visible' : 'none');
+    map.setLayoutProperty('Subway-Lines-layer', 'visibility', selectedValue === 'Ontario' ? 'visible' : 'none');
+    map.setLayoutProperty('Airports-layer', 'visibility', selectedValue === 'Ontario' ? 'visible' : 'none');
+    map.setLayoutProperty('VIA-layer', 'visibility', selectedValue === 'Ontario' ? 'visible' : 'none');
 });
 
 //For each layer create a block to put the colour and label in
