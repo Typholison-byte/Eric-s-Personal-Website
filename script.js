@@ -105,24 +105,6 @@ map.on('load', () => {
     // });
 
 
-    // Add a data source from a GeoJSON file - NOT WORKING, SHOULD FIX!
-    // map.addSource('Airports', {
-    //     type: 'geojson',
-    //     data: 'https://raw.githubusercontent.com/Typholison-byte/GGR472-Lab-3/refs/heads/main/Data/airports.geojson' // URL to your airports.geojson file 
-    // });
-
-    // Adding layer for airports
-    // map.addLayer({
-    //     id: 'Airports-layer', // Unique layer ID
-    //     type: 'fill',  // Must be 'fill' for polygons
-    //     source: 'Airports', // Corrected source ID
-    //     paint: {
-    //         'fill-color': 'purple',
-    //         'fill-opacity': 0.5, // Adjusted opacity for visibility
-    //         'fill-outline-color': '#000000' // Black outline for contrast
-    //     }
-    // });
-
     // Airports lines
     // map.addSource('Airports', {
     //     type: 'geojson',
@@ -144,14 +126,6 @@ map.on('load', () => {
     //     }
     // });
 
-    // Pop-ups for Airports
-    map.on('click', 'Airports-layer', (e) => {
-        new mapboxgl.Popup()
-            .setLngLat(e.lngLat)
-            .setHTML(`<b>Airport:</b> ${e.features[0].properties.name}`)
-            .addTo(map);
-    });
-
     // Attempting Polygon fill
     // map.addSource('Airports', {
     //     type: 'geojson',
@@ -170,27 +144,35 @@ map.on('load', () => {
     // });
 
     // Airports of Ontario
-    map.addSource('Airports', {
+    map.addSource('Airports1', {
         type: 'geojson',
-        data: 'https://raw.githubusercontent.com/Typholison-byte/Eric-s-Personal-Website/refs/heads/main/Data/airports.geojson'
+        data: 'https://raw.githubusercontent.com/Typholison-byte/Eric-s-Personal-Website/refs/heads/main/Data/airports1.geojson'
     });
 
     map.addLayer({
-        id: 'Airports-layer', // Unique layer ID
+        id: 'Airports1-layer', // Unique layer ID
         type: 'fill',  // Must be 'fill' for polygons
-        source: 'Airports', // Corrected source ID
+        source: 'Airports1', // Corrected source ID
         paint: {
             'fill-color': 'purple',
-            'fill-opacity': 0.5, // Adjusted opacity for visibility
+            'fill-opacity': 0.6, // Adjusted opacity for visibility
             'fill-outline-color': '#000000' // Black outline for contrast
         }
+    });
+
+    // Pop-ups for Airports
+    map.on('click', 'Airports1-layer', (e) => {
+        new mapboxgl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML(`<b>Airport:</b> ${e.features[0].properties.NAME}`)
+            .addTo(map);
     });
 
 
     // VIA Rail Ontario Stations
     map.addSource('VIA', {
         type: 'geojson',
-        data: 'https://raw.githubusercontent.com/Typholison-byte/Eric-s-Personal-Website/refs/heads/main/Data/VIA%20Rail%20Ontario.geojson'
+        data: 'https://raw.githubusercontent.com/Typholison-byte/Eric-s-Personal-Website/refs/heads/main/Data/VIA_Rail_Ontario.geojson'
     });
     
     map.addLayer({
@@ -241,7 +223,7 @@ const legend = document.getElementById('popn-legend');
 const layers = [
     { id: 'GO-Stations-layer', name: 'GO Stations', color: 'green' },
     { id: 'Subway-Lines-layer', name: 'Subway Lines', color: 'blue' },
-    { id: 'Airports-layer', name: 'Airports', color: 'purple' },
+    { id: 'Airports1-layer', name: 'Airports1', color: 'purple' },
     { id: 'VIA-layer', name: 'VIA', color: 'orange' }
 
 ];
@@ -277,7 +259,7 @@ document.getElementById("boundary").addEventListener('change', (e) => {
 
     map.setLayoutProperty('GO-Stations-layer', 'visibility', selectedValue === 'Ontario' ? 'visible' : 'none');
     map.setLayoutProperty('Subway-Lines-layer', 'visibility', selectedValue === 'Ontario' ? 'visible' : 'none');
-    map.setLayoutProperty('Airports-layer', 'visibility', selectedValue === 'Ontario' ? 'visible' : 'none');
+    map.setLayoutProperty('Airports1-layer', 'visibility', selectedValue === 'Ontario' ? 'visible' : 'none');
     map.setLayoutProperty('VIA-layer', 'visibility', selectedValue === 'Ontario' ? 'visible' : 'none');
 });
 
