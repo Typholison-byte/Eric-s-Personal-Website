@@ -176,16 +176,14 @@ body {
     padding: 10px 15px;
 }
 
-/* Style the toggle button */
-#toggle-subway {
-    position: absolute;
-    top: 40px;
-    left: 300px;
-    background-color: teal;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-size: 14px;
-    border-radius: 5px;
-    z-index: 1000;
+
+.ratio.ratio-16x9 {
+    margin: 0 auto;      /* Center horizontally */
+    max-width: 1000px;    /* Optional: limit max width */
+    border: 1px solid #ccc;     /* Light gray border */
+    border-radius: 8px;         /* Rounded corners (optional) */
+    padding: 8px;               /* Space inside the border */
+    background-color: greenyellow;  /* Light background (optional) */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+    /* other styles remain the same */
 }
